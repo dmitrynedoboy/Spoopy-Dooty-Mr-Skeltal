@@ -1,7 +1,10 @@
 <header>
-  <img class="logo" src="/img/logo.png" alt="Here is our logo">
-  <a class="btn" href="/signin">Sign in</a>
-  <a class="btn" href="/signup">Sign up</a>
+  <a href="/" alt="Wanna go home?"><img class="logo" src="/img/logo.png" alt="Here is our logo"></a>
+  {{#if user}}
   <a class="btn" href="/profile">Hello, Mr. Spooky Dooty {{username}}</a>
   <a class="btn" href="/logout">Logout</a>
+  {{else}}
+  <a class="btn" href="/signin">Sign in</a>
+  <a class="btn" href="/signup">Sign up</a>
+  {{/if}}
 </header>

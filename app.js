@@ -49,7 +49,7 @@ app.use('/signin', signInRouter);
 app.use('/signup', signUpRouter);
 
 app.get('*', (req, res) => {
-  res.send('404 :((((((((((')
+  res.render('404')
 })
 
 app.listen(PORT, () => {
