@@ -1,13 +1,25 @@
+body,
+.wrap {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Averia Libre', cursive;
+  font-size: larger;
+}
+
+.wrap {
+  flex: 1 0 auto;
 }
 
 .btn {
   display: inline-block;
-  background: #8C959D;
+  background: #ba9125;
   color: #fff;
   padding: 1rem 1.5rem;
   text-decoration: none;
@@ -18,12 +30,34 @@ body {
   width: 50%;
 }
 
+header>.btn {
+  display: flex;
+  margin: 0 2rem;
+  align-self: stretch;
+  justify-content: center;
+  align-items: center;
+  background-color: #100D0D;
+  border-radius: 0;
+}
+
+header>.btn:hover {
+  background-color: #ba9125;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  min-width: 70%;
   margin: 1rem 0;
 }
 
@@ -39,14 +73,6 @@ input {
   width: 100%;
 }
 
-.btn-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-}
-
 label,
 input {
   margin: 5px 0;
@@ -59,32 +85,48 @@ input {
 header {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: flex-end;
   width: 100%;
   background-color: #100D0D;
 }
 
 .logo {
   width: auto;
-  max-height: 150px;
+  max-height: 100px;
   margin: 2rem;
 }
 
-header>.btn {
+
+footer {
   display: flex;
-  margin: 0 2rem;
-  align-self: stretch;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  width: 100%;
+  min-height: 50px;
   background-color: #100D0D;
+  flex: 0 0 auto;
 }
 
-header>.btn:hover {
-  display: flex;
-  margin: 0 2rem;
-  align-self: stretch;
-  justify-content: center;
-  align-items: center;
-  background-color: #AE8D07;
+@keyframes moving {
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.logo:hover {
+  animation-name: moving;
+  animation-duration: 0.3s;
+  animation-iteration-count: 4;
+}
+
+img {
+  width: auto;
+  max-height: 300px;
 }
