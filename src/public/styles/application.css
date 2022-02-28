@@ -2,6 +2,8 @@ body,
 .wrap {
   height: 100%;
   width: 100%;
+  min-width: 585px;
+  min-height: 800px;
 }
 
 body {
@@ -14,7 +16,7 @@ body {
 }
 
 .wrap {
-  flex: 1 0 auto;
+  min-height: calc(100vh - 80px);
 }
 
 .btn {
@@ -28,6 +30,7 @@ body {
   border-width: 0;
   margin: 1rem 0;
   width: 50%;
+  box-sizing: border-box;
 }
 
 header>.btn {
@@ -38,6 +41,7 @@ header>.btn {
   align-items: center;
   background-color: #100D0D;
   border-radius: 0;
+  font-size: xx-large;
 }
 
 header>.btn:hover {
@@ -57,7 +61,7 @@ header>.btn:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 70%;
+  min-width: 80%;
   margin: 1rem 0;
 }
 
@@ -66,7 +70,7 @@ header>.btn:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  width: 70%;
 }
 
 input {
@@ -102,12 +106,12 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   color: #fff;
   width: 100%;
   min-height: 50px;
   background-color: #100D0D;
-  flex: 0 0 auto;
+  max-height: 80px;
 }
 
 @keyframes moving {
@@ -126,7 +130,59 @@ footer {
   animation-iteration-count: 4;
 }
 
-img {
-  width: auto;
-  max-height: 300px;
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.grave-pic {
+  height: auto;
+  max-width: 400px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 2rem;
+  padding: 1rem;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.buttons>.btn {
+  margin: 0 1rem;
+}
+
+.spoopy {
+  background-color: #100D0D;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    width: 90%;
+  }
+}
+
+.single-grave {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 }

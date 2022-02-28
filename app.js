@@ -11,7 +11,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 const indexRouter = require('./src/routes/index.routes.js');
+const cardRouter = require('./src/routes/card.routes.js');
 const logoutRouter = require('./src/routes/logout.routes.js');
+const profileRouter = require('./src/routes/profile.routes.js');
 const signInRouter = require('./src/routes/signin.routes.js');
 const signUpRouter = require('./src/routes/signup.routes.js');
 
@@ -37,16 +39,21 @@ app.use(morgan('dev'))
 
 app.use((req, res, next) => {
   if (req.session) {
-    res.locals.user = req.session.user
+    res.locals.userId = req.session.userId
+    res.locals.username = req.session.username
+    res.locals.email = req.session.email
   }
   next()
 })
 
 
 app.use('/', indexRouter);
+app.use('/card', cardRouter);
 app.use('/logout', logoutRouter);
+app.use('/profile', profileRouter);
 app.use('/signin', signInRouter);
 app.use('/signup', signUpRouter);
+
 
 app.get('*', (req, res) => {
   res.render('404')
