@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>💀Hello, {{@root.username}}💀</h1>
+  <h2>🪦Here is headstones visited by you:🪦</h2>
+  <div class="card-container">
+    {{#each headstones}}
+    <div class="card">
+      {{> grave}}
+      <div class="buttons">
+        <button class="btn edit" type="button" data-edit="{{id}}">Edit</button>
+        <button class="btn spoopy" type="button" data-del="{{id}}">Delete</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

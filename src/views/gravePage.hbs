@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="single-grave">
+    <h1>💐Look at that!!! What a beautiful grave💐</h1>
+    <h2>{{grave.title}}</h2>
+    <img class="grave-pic" src="{{grave.img}}" alt="{{grave.title}}">
+    <div class="card">
+      {{#if permission}}
+      <div class="buttons">
+        <button class="btn edit" type="button" data-edit="{{grave.id}}">Edit</button>
+        <button class="btn spoopy" type="button" data-del="{{grave.id}}">Delete</button>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
