@@ -1,9 +1,16 @@
 <div class="container">
   <h1>💀Welcome to our spoopy graveyard💀</h1>
+  {{#if headstones}}
   <h2>🪦Here is our best headstones:🪦</h2>
   <div class="card-container">
     {{#each headstones}}
     {{> grave}}
     {{/each}}
   </div>
+  {{else}}
+  <h2>🪦Damn! All our graves got lost!!!🪦</h2>
+  <a href="/card">
+    <h2>👻Wanna add one?👻</h2>
+  </a>
+  {{/if}}
 </div>

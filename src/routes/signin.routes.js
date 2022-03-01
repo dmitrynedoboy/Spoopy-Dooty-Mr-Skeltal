@@ -15,12 +15,12 @@ router.route('/')
     } else try {
       const user = await User.findOne({ where: { email }, raw: true })
       if (user === null) {
-        res.send('User with this email not found. Do you want to <a href="/signup"> register?</a>')
+        res.send('User with this email not found.\nDo you want to <a href="/signup"> register?</a>')
       } else if (await isPasswordValid(password, user.password)) {
         req.session.userId = user.id
         req.session.username = user.name
         req.session.email = user.email
-        res.redirect('/')
+        res.send('ok')
       } else {
         res.send('Invalid password. Try again.')
       }

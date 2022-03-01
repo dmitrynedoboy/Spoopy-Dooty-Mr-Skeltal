@@ -1,0 +1,28 @@
+<div class="container">
+  <form class="form" name="graveForm">
+    <div class="form input" action="/card" method="POST">
+      {{#if grave}}
+      <div class="container sub">
+        <label for="title">Grave title:</label>
+        <input type="text" name="title" placeholder="Title your grave here" value="{{grave.title}}">
+      </div>
+      <div class="container sub">
+        <label for="img">Image:</label>
+        <input type="text" name="img" placeholder="Input photo of your grave" value="{{grave.img}}">
+      </div>
+      {{else}}
+      <div class="container sub">
+        <label for="title">Grave title:</label>
+        <input type="text" name="title" placeholder="Title your grave here">
+      </div>
+      <div class="container sub">
+        <label for="img">Image:</label>
+        <input type="text" name="img" placeholder="Input photo of your grave">
+      </div>
+      {{/if}}
+      <div class="btn-container">
+        <button class="btn" type="button" data-submit="true">Submit</button>
+        <button class="btn spoopy" type="button" data-close="true">Cancel</button>
+      </div>
+  </form>
+</div>
