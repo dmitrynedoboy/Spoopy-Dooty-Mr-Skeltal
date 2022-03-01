@@ -1,9 +1,10 @@
 <div class="container">
   <h1>💀Hello, {{@root.username}}💀</h1>
+  {{#if headstones}}
   <h2>🪦Here is headstones visited by you:🪦</h2>
   <div class="card-container">
     {{#each headstones}}
-    <div class="card">
+    <div class="card" id="card-id-{{id}}">
       {{> grave}}
       <div class="buttons">
         <button class="btn edit" type="button" data-edit="{{id}}">Edit</button>
@@ -11,5 +12,11 @@
       </div>
     </div>
     {{/each}}
+    {{else}}
+    <h2>🪦Oh no! You have no visited graves!!!🪦</h2>
+    <a href="/card">
+      <h2>👻Wanna add one?👻</h2>
+    </a>
+    {{/if}}
   </div>
 </div>

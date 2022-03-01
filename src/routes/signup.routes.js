@@ -15,16 +15,19 @@ router.route('/')
     const { name, email, password, passwordConfirm } = req.body
     if (!isValidEmail(email)) {
       res.send('Email is not valid. Please enter email in correct format: "example@example.com"')
-    } else if (!isPasswordConfirm(password, passwordConfirm)) {
+    } else if(password.length < 8) {
+      res.send('Passwords should contain at least 8 characters')
+    }
+    else if (!isPasswordConfirm(password, passwordConfirm)) {
       res.send('Passwords are not the same')
     } else if (await isEmailUnique(email)) {
       try {
         const hashedPassword = await bcrypt.hash(password, saltRounds)
         const newUser = await User.create({ name, email, password: hashedPassword })
-        req.session.userId = user.id
+        req.session.userId = newUser.id
         req.session.username = newUser.name
         req.session.email = newUser.email
-        res.redirect('/')
+        res.send('ok')
       } catch (error) {
         console.log(error);
         res.render('404', { message: ' on our server. Please try later.' })

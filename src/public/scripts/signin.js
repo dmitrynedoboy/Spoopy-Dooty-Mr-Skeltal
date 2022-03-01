@@ -1,23 +1,23 @@
-const { signUp } = document.forms;
+const { signIn } = document.forms;
 
-signUp?.addEventListener('submit', async (event) => {
+signIn?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const { action, method } = event.target;
-  const formData = new FormData(signUp);
-  const signUpData = Object.fromEntries(formData);
-  const signUpResponse = await fetch(action, {
+  const formData = new FormData(signIn);
+  const signInData = Object.fromEntries(formData);
+  const signInResponse = await fetch(action, {
     method,
     headers: {
       'Content-Type':'application/json',
     },
-    body: JSON.stringify(signUpData)
+    body: JSON.stringify(signInData)
   })
-  const signUpResult = await signUpResponse.text();
-  if (signUpResult === 'ok') {
+  const signInResult = await signInResponse.text();
+  if (signInResult === 'ok') {
     window.location = '/';
   } else {
     const buttonContainer = document.querySelector('.btn-container');
-    buttonContainer.insertAdjacentHTML('beforebegin', `<div class="container error">${signUpResult}</div>`)
+    buttonContainer.insertAdjacentHTML('beforebegin', `<div class="container error">${signInResult}</div>`)
     buttonContainer.firstElementChild.setAttribute('disabled', 'disabled');
     setTimeout(() => {
       document.querySelector('.container .error').remove();

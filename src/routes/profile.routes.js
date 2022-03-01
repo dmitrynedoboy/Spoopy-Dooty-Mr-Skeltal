@@ -5,7 +5,7 @@ const { User, Grave } = require('../../db/models')
 router.route('/')
   .get(isUserLogin, async (req, res) => {
     try {
-      const headstones = await  Grave.findAll({ where: { UserId: res.locals.userId }, raw: true })
+      const headstones = await  Grave.findAll({ where: { UserId: res.locals.userId }, raw: true, order: [['updatedAt', 'DESC']] })
       res.render('profile', { headstones });
     } catch (error) {
       console.log(error);

@@ -1,6 +1,6 @@
-const cardContainer = document.querySelector('.container div.container div.card-container');
+const cardDeleteContainer = document.querySelector('.container div.container');
 
-cardContainer?.addEventListener('click', async (event) => {
+cardDeleteContainer?.addEventListener('click', async (event) => {
   const { del } = event.target.dataset;
   if (del) {
     const response = await fetch(`/card/${del}`, {
@@ -8,8 +8,8 @@ cardContainer?.addEventListener('click', async (event) => {
     });
     const result = await response.text();
     if (response.ok) {
-      const card = document.closest(`.card`)
-      card.remove()
+      const card = document.getElementById(`card-id-${del}`);
+      card.remove();
     }
-  }
+   }
 });

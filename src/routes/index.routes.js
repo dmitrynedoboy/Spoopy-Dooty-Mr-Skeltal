@@ -4,7 +4,7 @@ const { Grave } = require('../../db/models')
 router.route('/')
   .get( async (req, res) => {
     try {
-      const headstones = await  Grave.findAll({ raw: true })
+      const headstones = await  Grave.findAll({ raw: true, order: [['updatedAt', 'DESC']] })
       res.render('index', { headstones });
     } catch (error) {
       console.log(error);
