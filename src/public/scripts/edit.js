@@ -4,9 +4,7 @@ const html = document.documentElement;
 cardEditContainer?.addEventListener('click', async (event) => {
   const { edit } = event.target.dataset;
   if (edit) {
-    const response = await fetch(`/card/${edit}`, {
-      method: 'PUT',
-    });
+    const response = await fetch(`/card/${edit}/edit`);
     const result = await response.text();
     if (response.ok) {
       cardEditContainer.insertAdjacentHTML('beforebegin', result);
@@ -23,7 +21,7 @@ cardEditContainer?.addEventListener('click', async (event) => {
         const formData = new FormData(graveForm);
         const data = Object.fromEntries(formData)
         const response = await fetch(`/card/${edit}`, {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Content-Type':'application/json',
           },

@@ -1,22 +1,16 @@
-body,
-.wrap {
-  height: 100%;
-  width: 100%;
-  min-width: 720px;
-  min-height: 800px;
-}
-
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-family: 'Averia Libre', cursive;
   font-size: larger;
+  min-height: 100vh;
+  text-align: center;
 }
 
-.wrap {
-  min-height: calc(100vh - 80px);
+.main {
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .btn {
@@ -57,11 +51,6 @@ header>.btn:hover {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 80%;
   margin: 1rem 0;
 }
 
@@ -109,9 +98,7 @@ footer {
   justify-content: center;
   color: #fff;
   width: 100%;
-  min-height: 50px;
   background-color: #100D0D;
-  max-height: 80px;
 }
 
 @keyframes moving {

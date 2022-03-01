@@ -26,3 +26,4 @@ signUp?.addEventListener('submit', async (event) => {
 
   }
 })
+

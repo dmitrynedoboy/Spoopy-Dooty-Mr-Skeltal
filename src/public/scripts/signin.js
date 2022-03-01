@@ -13,6 +13,7 @@ signIn?.addEventListener('submit', async (event) => {
     body: JSON.stringify(signInData)
   })
   const signInResult = await signInResponse.text();
+  console.log(signInResult);
   if (signInResult === 'ok') {
     window.location = '/';
   } else {

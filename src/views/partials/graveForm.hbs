@@ -1,6 +1,6 @@
 <div class="container">
-  <form class="form" name="graveForm">
-    <div class="form input" action="/card" method="POST">
+  <form class="form" name="graveForm" action="/card" method="POST">
+    <div class="form input">
       {{#if grave}}
       <div class="container sub">
         <label for="title">Grave title:</label>
@@ -24,5 +24,6 @@
         <button class="btn" type="button" data-submit="true">Submit</button>
         <button class="btn spoopy" type="button" data-close="true">Cancel</button>
       </div>
+    </div>
   </form>
 </div>

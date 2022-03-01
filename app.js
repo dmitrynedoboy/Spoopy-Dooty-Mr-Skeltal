@@ -1,11 +1,11 @@
 require('dotenv').config()
+
 const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const morgan = require('morgan')
 const hbs = require('hbs')
-// const { isUserLogin, isUserNotLogin } = require('./src/middleware/')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -53,7 +53,6 @@ app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
 app.use('/signin', signInRouter);
 app.use('/signup', signUpRouter);
-
 
 app.get('*', (req, res) => {
   res.render('404')
