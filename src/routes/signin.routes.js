@@ -1,4 +1,8 @@
 const router = require('express').Router();
+const passport = require('passport');
+const crypto = require('crypto')
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
+
 const { isUserNotLogin } = require('../middleware/isSession');
 const { isValidEmail } = require('../middleware/emailCheck');
 const { isPasswordValid } = require('../middleware/passwordCheck')
@@ -28,6 +32,25 @@ router.route('/')
       console.log(error);
       res.render('404', { message: ' on our server. Please try later.' })
     }
-  })
+  });
+
+  passport.use(new GoogleStrategy({
+    clientID: process.env['GOOGLE_CLIENT_ID'],
+    clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
+    callbackURL: '/oauth2/redirect/google',
+    scope: ['email', 'profile'],
+    passReqToCallback: true,
+  },
+  async function(req, accessToken, refreshToken, profile, done) {
+    const randomHash = crypto.randomBytes(20).toString('hex');
+    const googleUser = await User.findOrCreate({ where: { email: profile.email }, defaults: { name: profile.displayName, password: randomHash }, raw: true });
+    req.session.userId = googleUser[0].id
+    req.session.username = googleUser[0].name
+    req.session.email = googleUser[0].email
+    return done(null, googleUser[0]);
+  }
+));
+
+  router.get('/federated/google', passport.authenticate('google'));
 
 module.exports = router

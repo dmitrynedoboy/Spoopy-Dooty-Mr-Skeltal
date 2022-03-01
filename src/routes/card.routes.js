@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const { isUserLogin } = require('../middleware/isSession');
-const { User, Grave } = require('../../db/models')
+const { isUserHavePermission } = require('../middleware/userPermission');
+const { Grave } = require('../../db/models')
 
 router.route('/')
   .get(isUserLogin, (req, res) => {
     res.render('partials/graveForm')
-  })
+  }) //done
   .post(isUserLogin, async (req, res) => {
     const { title, img } = req.body;
     try {
@@ -15,7 +16,7 @@ router.route('/')
       console.log(error);
       res.render('404', { message: ' on our server. Please try later.' })
     }
-  })
+  }) //done
 
 router.route('/:cardId')
   .get(async (req, res) => {
@@ -31,8 +32,8 @@ router.route('/:cardId')
       console.log(error);
       res.render('404', { message: ' on our server. Please try later.' })
     }
-  })
-  .post(isUserLogin, async (req, res) => {
+  }) //done
+  .put(isUserHavePermission, async (req, res) => {
     const { cardId } = req.params;
     const { title, img } = req.body;
     try {
@@ -46,20 +47,8 @@ router.route('/:cardId')
       console.log(error);
       res.render('404', { message: ' on our server. Please try later.' })
     }
-  })
-  .put(isUserLogin, async (req, res) => {
-    const { cardId } = req.params;
-    try {
-      const grave = await Grave.findOne({ where: { id: cardId }, raw: true });
-      if (grave.UserId === req.session.userId) {
-        res.render('modal', { grave, layout: false })
-      } else res.send('You dont have permission to edit this grave.')
-    } catch (error) {
-      console.log(error);
-      res.render('404', { message: ' on our server. Please try later.' })
-    }
-  })
-  .delete(isUserLogin, async (req, res) => {
+  }) //done
+  .delete(isUserHavePermission, async (req, res) => {
     const { cardId } = req.params;
       try {
         const grave = await Grave.findOne({ where: { id: cardId }, raw: true });
@@ -71,6 +60,21 @@ router.route('/:cardId')
         console.log(error);
         res.render('404', { message: ' on our server. Please try later.' })
       }
-  })
+  }); //done
+
+router.route('/:cardId/edit')
+  .get(isUserHavePermission, async (req, res) => {
+    const { cardId } = req.params;
+    try {
+      const grave = await Grave.findOne({ where: { id: cardId }, raw: true });
+      if (grave.UserId === req.session.userId) {
+        res.render('modal', { grave, layout: false })
+      } else res.send('You dont have permission to edit this grave.')
+    } catch (error) {
+      console.log(error);
+      res.render('404', { message: ' on our server. Please try later.' })
+    }
+  }) //done
+
 
 module.exports = router
